@@ -8,57 +8,62 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var cardCount:Int = 3
-    let emojis = ["👻","💩","🤡","😈","🎃","🍐","🍉","🍇","🍒"]
+    @State var emojis:Array<String> = ["🚒","🚒","🚓","🚓","🛵","🛵","🛺","🛺","🚔","🚔"]
+    @State var backColor = Color.blue
     var body: some View {
+        
         VStack {
+            Text("Memorize!").font(.largeTitle)
             ScrollView{
                 cards
             }
-            Spacer()
-            cardAdjuster
+            themeChoice
         }
         .padding()
     }
     
     var cards: some View{
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))]){
-            ForEach(0..<cardCount, id:\.self){index in
-                CardView(emoji: emojis[index])
+        let pairCount = Int.random(in: 2...emojis.count/2)
+        
+        let partEmojiSet = emojis[0..<pairCount*2].shuffled()
+        return LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]){
+            ForEach(0..<partEmojiSet.count, id:\.self){index in
+                CardView(emoji: partEmojiSet[index])
                     .aspectRatio(2/3, contentMode: .fit)
             }
         }
-        .foregroundColor(.orange)
+        .foregroundColor(backColor)
     }
     
-    var cardAdjuster: some View{
+    func themeButtion(bColor:Color, emojiset:Array<String>, text: String, symbol: String) -> some View{
+        Button(action:{
+            backColor = bColor
+            emojis = emojiset
+        },label:{
+            VStack{
+                Image(systemName: symbol)
+                    .font(.title)
+                    .imageScale(.medium)
+                    
+                Text(text).font(.system(size:10))
+            }
+            
+        })
+    }
+
+    
+    var themeChoice: some View{
         HStack{
-            cardRemover
             Spacer()
-            cardAdder
+            themeButtion(bColor:Color.blue,emojiset:["🚒","🚒","🚓","🚓","🛵","🛵","🛺","🛺","🚔","🚔"],text: "Vechicles", symbol: "car")
+            Spacer()
+            themeButtion(bColor:Color.yellow,emojiset:["🥐","🥐","🍞","🍞","🧀","🧀","🍟","🍟","🌮","🌮","🍗","🍗","🍳","🍳"],text: "Food", symbol: "popcorn.circle")
+            Spacer()
+            themeButtion(bColor:Color.orange,emojiset:["🍊","🍊","🍌","🍌","🍇","🍇","🫐","🫐","🍑","🍑"],text: "Fruit", symbol: "apple.logo")
+            Spacer()
             
         }
-        .imageScale(.large)
-        .font(.largeTitle)
     }
-    
-    func cardCoundAdjuster(by offset: Int, symbol: String) -> some View{
-        Button(action:{
-            cardCount += offset
-        }, label:{
-            Image(systemName: symbol)
-        })
-        .disabled(cardCount + offset < 1 || cardCount + offset > emojis.count)
-    }
-    
-    var cardRemover: some View{
-        cardCoundAdjuster(by: -1, symbol: "rectangle.stack.badge.minus.fill")
-    }
-    
-    var cardAdder: some View{
-        cardCoundAdjuster(by: 1, symbol: "rectangle.stack.badge.plus.fill")
-    }
-    
     
     
 }
@@ -69,10 +74,10 @@ struct ContentView: View {
 
 struct CardView: View {
     let emoji: String
-    @State var isFaceUp = true
+    @State var isFaceUp = false
     var body: some View {
         ZStack{
-            let base = RoundedRectangle(cornerRadius: 20)
+            let base = RoundedRectangle(cornerRadius: 10)
             Group{
                 base.foregroundColor(.white)
                 base.strokeBorder(lineWidth: 2)
