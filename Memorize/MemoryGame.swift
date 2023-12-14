@@ -7,16 +7,30 @@
 
 import Foundation
 
-struct MemorizeGame<CardContent>{
-    var cards: Array<Card>
+struct MemoryGame<CardContent>{
+    //private(set) means only allow the see the card externally, cannot change the value.
+    private(set) var cards: Array<Card>
     
-    func choose(card: Card){
+    init(numberOfPairCards: Int, cardContentFactory:(Int)->CardContent) {
+        cards = []
+        for pairIndex in 0..<max(2,numberOfPairCards){
+            let content = cardContentFactory(pairIndex)
+            cards.append(Card(content:content))
+            cards.append(Card(content:content))
+        }
+    }
+    
+    mutating func shuffle(){
+        cards.shuffle()
+    }
+    
+    func choose(_ card: Card){
         
     }
     
     struct Card{
-        var isFaceUp: Bool
-        var isMatched: Bool
+        var isFaceUp = true
+        var isMatched = false
         var content: CardContent
     }
 }

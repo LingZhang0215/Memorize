@@ -8,21 +8,27 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
-    @State var cardCount:Int = 3
-    let emojis = ["👻","💩","🤡","😈","🎃","🍐","🍉","🍇","🍒"]
+    @ObservedObject var viewModel: EmojiMemoryGame
+    
     var body: some View {
-
-        ScrollView{
-            cards
+        VStack{
+            ScrollView{
+                        cards
+                    }
+                    .padding()
+            Button("Shuffle"){
+                viewModel.shuffle()
+            }
         }
-        .padding()
+        
     }
     
     var cards: some View{
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85))]){
-            ForEach(emojis.indices, id:\.self){index in
-                CardView(emoji: emojis[index])
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85),spacing: 0)],spacing: 0){
+            ForEach(viewModel.cards.indices, id:\.self){index in
+                CardView(viewModel.cards[index])
                     .aspectRatio(2/3, contentMode: .fit)
+                    .padding(4)
             }
         }
         .foregroundColor(.orange)
@@ -32,27 +38,29 @@ struct EmojiMemoryGameView: View {
 }
 
 #Preview {
-    EmojiMemoryGameView()
+    EmojiMemoryGameView(viewModel: EmojiMemoryGame())
 }
 
 struct CardView: View {
-    let emoji: String
-    @State var isFaceUp = true
+    let card: MemoryGame<String>.Card
+    
+    init(_ card: MemoryGame<String>.Card){
+        self.card = card
+    }
+    
     var body: some View {
         ZStack{
             let base = RoundedRectangle(cornerRadius: 20)
             Group{
                 base.foregroundColor(.white)
                 base.strokeBorder(lineWidth: 2)
-                Text(emoji).font(.largeTitle)
+                Text(card.content)
+                    .font(.system(size:200))
+                    .minimumScaleFactor(0.01)
+                    .aspectRatio(1, contentMode: .fit)
             }
-            .opacity(isFaceUp ? 1 : 0)
-            base.fill().opacity(isFaceUp ? 0 : 1)
-        }
-        .onTapGesture {
-            print("tapped")
-            //isFaceUp = !isFaceUp
-            isFaceUp.toggle()
+            .opacity(card.isFaceUp ? 1 : 0)
+            base.fill().opacity(card.isFaceUp ? 0 : 1)
         }
     }
 }
