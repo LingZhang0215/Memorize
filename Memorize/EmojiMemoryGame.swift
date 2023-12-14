@@ -7,6 +7,6 @@
 
 import SwiftUI
 
-class EmojiMemorizeGame{
-    var model: MemorizeGame<String>
+class EmojiMemoryGame{
+    var model: MemoryGame<String>
 }
