@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		3D32EFAE2B22FAD400F32D8D /* MemorizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D32EFAD2B22FAD400F32D8D /* MemorizeApp.swift */; };
-		3D32EFB02B22FAD400F32D8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D32EFAF2B22FAD400F32D8D /* ContentView.swift */; };
+		3D32EFB02B22FAD400F32D8D /* EmojiMemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D32EFAF2B22FAD400F32D8D /* EmojiMemoryGameView.swift */; };
 		3D32EFB22B22FAD700F32D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D32EFB12B22FAD700F32D8D /* Assets.xcassets */; };
 		3D32EFB52B22FAD700F32D8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D32EFB42B22FAD700F32D8D /* Preview Assets.xcassets */; };
+		3DFF5E7B2B32C3D800D2D4D9 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF5E7A2B32C3D800D2D4D9 /* MemoryGame.swift */; };
+		3DFF5E7D2B32C3FF00D2D4D9 /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF5E7C2B32C3FF00D2D4D9 /* EmojiMemoryGame.swift */; };
+		3DFF5E7F2B33DD9200D2D4D9 /* GameTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF5E7E2B33DD9200D2D4D9 /* GameTheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3D32EFAA2B22FAD400F32D8D /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D32EFAD2B22FAD400F32D8D /* MemorizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeApp.swift; sourceTree = "<group>"; };
-		3D32EFAF2B22FAD400F32D8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3D32EFAF2B22FAD400F32D8D /* EmojiMemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameView.swift; sourceTree = "<group>"; };
 		3D32EFB12B22FAD700F32D8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D32EFB42B22FAD700F32D8D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3DFF5E7A2B32C3D800D2D4D9 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
+		3DFF5E7C2B32C3FF00D2D4D9 /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
+		3DFF5E7E2B33DD9200D2D4D9 /* GameTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +58,12 @@
 			isa = PBXGroup;
 			children = (
 				3D32EFAD2B22FAD400F32D8D /* MemorizeApp.swift */,
-				3D32EFAF2B22FAD400F32D8D /* ContentView.swift */,
+				3D32EFAF2B22FAD400F32D8D /* EmojiMemoryGameView.swift */,
 				3D32EFB12B22FAD700F32D8D /* Assets.xcassets */,
 				3D32EFB32B22FAD700F32D8D /* Preview Content */,
+				3DFF5E7A2B32C3D800D2D4D9 /* MemoryGame.swift */,
+				3DFF5E7E2B33DD9200D2D4D9 /* GameTheme.swift */,
+				3DFF5E7C2B32C3FF00D2D4D9 /* EmojiMemoryGame.swift */,
 			);
 			path = Memorize;
 			sourceTree = "<group>";
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D32EFB02B22FAD400F32D8D /* ContentView.swift in Sources */,
+				3DFF5E7B2B32C3D800D2D4D9 /* MemoryGame.swift in Sources */,
+				3DFF5E7F2B33DD9200D2D4D9 /* GameTheme.swift in Sources */,
+				3D32EFB02B22FAD400F32D8D /* EmojiMemoryGameView.swift in Sources */,
 				3D32EFAE2B22FAD400F32D8D /* MemorizeApp.swift in Sources */,
+				3DFF5E7D2B32C3FF00D2D4D9 /* EmojiMemoryGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +298,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Naomi.Memorize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -314,6 +329,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Naomi.Memorize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
